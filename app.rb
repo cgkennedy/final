@@ -14,7 +14,7 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-parks_table = DB.from(:parks)
+attractions_table = DB.from(:attractions)
 ratings_table = DB.from(:ratings)
 users_table = DB.from(:users)
 
@@ -23,32 +23,32 @@ before do
 end
 
 get "/" do
-    puts parks_table.all
-    @parks = parks_table.all.to_a
-    view "parks"
+    puts attractions_table.all
+    @attractions = attractions_table.all.to_a
+    view "attractions"
 end
 
-get "/parks/:id" do
-    @park = parks_table.where(id: params[:id]).to_a[0]
-    @ratings = ratings_table.where(event_id: @parks[:id])
-    #@ratings_count = ratings_table.where(event_id: @parks[:id], going: true).count
+get "/attractions/:id" do
+    @attraction = attractions_table.where(id: params[:id]).to_a[0]
+    @ratings = ratings_table.where(attraction_id: @attractions[:id])
+    @ratings_count = ratings_table.where(attraction_id: @attractions[:id], attended_this_week: true).count
     @users_table = users_table
-    view "park"
+    view "attraction"
 end
 
-get "/parks/:id/ratings/new" do
-    @park = parks_table.where(id: params[:id]).to_a[0]
+get "/attractions/:id/ratings/new" do
+    @attraction = attractions_table.where(id: params[:id]).to_a[0]
     view "new_rating"
 end
 
-get "/events/:id/rsvps/create" do
+get "/attractions/:id/ratings/create" do
     puts params
-    @event = events_table.where(id: params["id"]).to_a[0]
-    rsvps_table.insert(event_id: params["id"],
+    @attraction = attractions_table.where(id: params["id"]).to_a[0]
+    ratings_table.insert(attraction_id: params["id"],
                        user_id: session["user_id"],
-                       going: params["going"],
+                       attended_this_week: params["Attended this week"],
                        comments: params["comments"])
-    view "create_rsvp"
+    view "create_rating"
 end
 
 get "/users/new" do
