@@ -31,7 +31,7 @@ end
 get "/attractions/:id" do
     @attraction = attractions_table.where(id: params[:id]).to_a[0]
     @ratings = ratings_table.where(attraction_id: @attractions[:id])
-    @ratings_count = ratings_table.where(attraction_id: @attractions[:id], attended_this_week: true).count
+    @ratings_count = ratings_table.where(attraction_id: @attractions[:id], worth_it: true).count
     @users_table = users_table
     view "attraction"
 end
@@ -46,7 +46,7 @@ get "/attractions/:id/ratings/create" do
     @attraction = attractions_table.where(id: params["id"]).to_a[0]
     ratings_table.insert(attraction_id: params["id"],
                        user_id: session["user_id"],
-                       attended_this_week: params["Attended this week"],
+                       worth_it: params["Worth the trip?"],
                        comments: params["comments"])
     view "create_rating"
 end

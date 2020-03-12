@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-sm-9">
+       
+        <h1>
+            <i class="fas fa-mountain"></i>
+            <%= @attraction[:title] %>
+        </h1>
+        <p><%= @attraction[:description] %></p>
+        <% for rating in @ratings %>
+            <div class="media">
+                <% if rating[:worth_it] %>
+                    <i class="fas fa-thumbs-up fa-3x mr-3"></i>
+                <% else %>
+                    <i class="fas fa-thumbs-down fa-3x mr-3"></i>
+                <% end %>
+                <div class="media-body">
+                    <h5 class="mt-0"><%= @users_table.where(id: rating[:user_id]).to_a[0][:name] %></h5>
+                    <%= rating[:comments] %>
+                </div>
+            </div>
+        <% end %>
+        <p class="mt-5">
+            <% if @current_user %>
+                <a href="/attractions/<%= @attraction[:id] %>/ratings/new" class="btn btn-primary">Review now!</a>
+            <% else %>
+                <a href="/logins/new" class="btn btn-danger">Please sign in to place review</a>
+            <% end %>
+        </p>
+    </div>
+    <div class="col-sm-3">
+        <h3>Current Weather</h3>
+        <p><%= @attraction[:current_conditions] %></p>
+        <h3>News</h3>
+        <p><%= @attraction[:news] %></p>
+        <h3>How many have reviewed this week?</h3>
+        <p><%= @ratings_count %></p>
+    </div>
+</div>
