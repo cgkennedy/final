@@ -13,6 +13,7 @@ use Rack::Session::Cookie, key: 'rack.session', path: '/', secret: 'secret'     
 before { puts; puts "--------------- NEW REQUEST ---------------"; puts }             #
 after { puts; }                                                                       #
 #######################################################################################
+require "geocoder"
 
 attractions_table = DB.from(:attractions)
 ratings_table = DB.from(:ratings)
@@ -49,6 +50,7 @@ get "/attractions/:id/ratings/create" do
                        user_id: session["user_id"],
                        worth_it: params["Worth the trip?"],
                        comments: params["comments"])
+                       #coordinates: params[]
     view "create_rating"
 end
 

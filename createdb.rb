@@ -20,6 +20,7 @@ DB.create_table! :ratings do
   String :name
   String :email
   String :comments, text: true
+  String :coordinates
 end
 DB.create_table! :users do
   primary_key :id
@@ -49,6 +50,6 @@ attractions_table.insert(title: "Yosemite National Park",
                     current_conditions: "Sunny, 71 degrees and clear skies",
                     news: "Vernal Falls trail is currently under construction but will remain open between the hours of 9AM and 3PM")
 
-users_table = DB.from(:users)
+
 
 
