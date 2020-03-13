@@ -45,5 +45,9 @@ attractions_table.insert(title: "Grand Prismatic Spring",
                     current_conditions: "Sunny, 71 degrees and clear skies",
                     news: "Trail is currently under construction but will remain open between the hours of 9AM and 3PM")
 
+users_table = DB.from(:users)
 
-
+users_table.insert(title: "Users", 
+                    name: "Curt",
+                    email: "curt@google.com",
+                    password: "12345")
