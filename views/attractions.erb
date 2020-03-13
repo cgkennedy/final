@@ -1,4 +1,15 @@
-<h1>Park Attractions</h1>
+<div class="container mt-5">
+       
+        <h2 class="display-4">
+            Nature never sleeps, neither will you.
+        </h2>
+       
+    <p> All the latest national park news submitted by recent visitors so you never miss out on what's happening </p>
+        
+</div>
+
+
+<h1>National Parks</h1>
 
 <% for attraction in @attractions %>
     <p><a href="/attractions/<%= attraction[:id] %>"><%= attraction[:title] %></a></p>

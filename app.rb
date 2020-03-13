@@ -26,12 +26,13 @@ get "/" do
     puts attractions_table.all
     @attractions = attractions_table.all.to_a
     view "attractions"
+
 end
 
 get "/attractions/:id" do
     @attraction = attractions_table.where(id: params[:id]).to_a[0]
-    @ratings = ratings_table.where(attraction_id: @attractions[:id])
-    @ratings_count = ratings_table.where(attraction_id: @attractions[:id], worth_it: true).count
+    @ratings = ratings_table.where(attraction_id: @attraction[:id])
+    @ratings_count = ratings_table.where(attraction_id: @attraction[:id], worth_it: true).count
     @users_table = users_table
     view "attraction"
 end
