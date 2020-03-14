@@ -25,9 +25,10 @@ end
 
 get "/" do
     puts attractions_table.all
+    @lat = attractions_table.where(id: params[:lat]).to_a[0]
+    @long = attractions_table.where(id: params[:long]).to_a[0]
     @attractions = attractions_table.all.to_a
     view "attractions"
-
 end
 
 get "/attractions/:id" do
@@ -52,7 +53,7 @@ get "/attractions/:id/ratings/create" do
                        worth_it: params["Worth the trip?"],
                        comments: params["comments"],
                        location: params["location"])
-
+    
     view "create_rating"
 end
 

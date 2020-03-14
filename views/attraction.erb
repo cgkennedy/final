@@ -5,7 +5,16 @@
             <i class="fas fa-mountain"></i>
             <%= @attraction[:title] %>
         </h1>
-        <img src= "https://www.worldatlas.com/r/w963-h562-c963x562/upload/f1/a7/5e/shutterstock-677567317.jpg" class="img-fluid" alt="Responsive image">
+        <img src= "@attraction[:image]" class="img-fluid" alt="Responsive image">
+        
+    <h1>Park Map</h1>
+      <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw
+          &q=<%= @lat %>,<%= @long %>&zoom=6" allowfullscreen>
+      </iframe>
         
         <p><%= @attraction[:description] %></p>
         <% for rating in @ratings %>
