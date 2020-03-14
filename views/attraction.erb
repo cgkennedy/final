@@ -5,7 +5,7 @@
             <i class="fas fa-mountain"></i>
             <%= @attraction[:title] %>
         </h1>
-        <img src= @attraction[:image] class="img-fluid" alt="Responsive image">
+        <img src= "https://www.worldatlas.com/r/w963-h562-c963x562/upload/f1/a7/5e/shutterstock-677567317.jpg" class="img-fluid" alt="Responsive image">
         
         <p><%= @attraction[:description] %></p>
         <% for rating in @ratings %>
@@ -40,7 +40,6 @@
         <p><%= @attraction[:current_conditions] %></p>
         <h3>News</h3>
         <p><%= @attraction[:news] %></p>
-        <h3>How many have reviewed this week?</h3>
-        <p><%= @ratings_count %></p>
+    
     </div>
 </div>

@@ -33,7 +33,6 @@ end
 get "/attractions/:id" do
     @attraction = attractions_table.where(id: params[:id]).to_a[0]
     @ratings = ratings_table.where(attraction_id: @attraction[:id])
-    @ratings_count = ratings_table.where(attraction_id: @attraction[:id], worth_it: true).count
     @users_table = users_table
     view "attraction"
 end
