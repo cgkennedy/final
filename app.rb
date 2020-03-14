@@ -45,12 +45,15 @@ end
 
 get "/attractions/:id/ratings/create" do
     puts params
+    results = Geocoder.search(params["location"])
+    lat_long = results.first.coordinates
     @attraction = attractions_table.where(id: params["id"]).to_a[0]
     ratings_table.insert(attraction_id: params["id"],
                        user_id: session["user_id"],
                        worth_it: params["Worth the trip?"],
-                       comments: params["comments"])
-                       #coordinates: params[]
+                       comments: params["comments"],
+                       location: params["location"])
+
     view "create_rating"
 end
 

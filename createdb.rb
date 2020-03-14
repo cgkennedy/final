@@ -16,11 +16,13 @@ end
 DB.create_table! :ratings do
   primary_key :id
   foreign_key :attraction_id
+  foreign_key :user_id
   Boolean :worth_it
   String :name
   String :email
   String :comments, text: true
-  String :coordinates
+  String :location
+
 end
 DB.create_table! :users do
   primary_key :id
