@@ -44,6 +44,7 @@ get "/attractions/:id/ratings/new" do
     view "new_rating"
 end
 
+
 get "/attractions/:id/ratings/create" do
     puts params
     results = Geocoder.search(params["location"])
