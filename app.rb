@@ -25,8 +25,6 @@ end
 
 get "/" do
     puts attractions_table.all
-    @lat = attractions_table.where(id: params[:lat]).to_a[0]
-    @long = attractions_table.where(id: params[:long]).to_a[0]
     @attractions = attractions_table.all.to_a
     view "attractions"
 end
@@ -35,6 +33,9 @@ get "/attractions/:id" do
     @attraction = attractions_table.where(id: params[:id]).to_a[0]
     @ratings = ratings_table.where(attraction_id: @attraction[:id])
     @users_table = users_table
+    #geocode
+    results = Geocoder.search(@attraction[:address])
+    @lat_long = results.first.coordinates # => [lat, long]
     view "attraction"
 end
 
